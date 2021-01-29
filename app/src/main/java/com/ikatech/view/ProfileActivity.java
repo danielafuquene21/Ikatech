@@ -67,10 +67,11 @@ public class ProfileActivity extends Fragment {
             name.setEnabled(false);
             addres.setEnabled(false);
             btnGuardar.setVisibility(View.GONE);
-            user = db.loadUser(user.getUsername());
+            user = db.loadUser(user.getUsername(), user.getPassword());
             name.setText(user.getName());
             cc.setText(String.valueOf(user.getUsername()));
             addres.setText(user.getAddress());
+            btnCapGps.setVisibility(View.GONE);
         }else{
             cc.setText(user.getUsername()+"");
             btnCapGps.setOnClickListener(new View.OnClickListener() {

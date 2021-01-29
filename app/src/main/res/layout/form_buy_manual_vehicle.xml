@@ -47,12 +47,12 @@
                     android:layout_weight="1"
                     android:text="@string/marca">
                 </TextView>
-                <TextView
+                <EditText
                     android:id="@+id/marca"
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
-                </TextView>
+                </EditText>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -68,13 +68,13 @@
                     android:layout_weight="1"
                     android:text="@string/modelo">
                 </TextView>
-                <TextView
+                <EditText
                     android:id="@+id/modelo"
                     android:layout_weight="1"
+                    android:inputType="number"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:editable="false">
-                </TextView>
+                    android:layout_height="match_parent">
+                </EditText>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -90,13 +90,33 @@
                     android:layout_weight="1"
                     android:text="@string/eliminacion">
                 </TextView>
-                <TextView
+                <EditText
                     android:id="@+id/eliminacion"
                     android:layout_weight="1"
                     android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                </EditText>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp">
+
+                <TextView
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:editable="false">
+                    android:layout_weight="1"
+                    android:text="Url Imagen">
                 </TextView>
+                <EditText
+                    android:id="@+id/imagenUrl"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                </EditText>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -115,14 +135,13 @@
                 <TextView
                     android:id="@+id/estado"
                     android:layout_weight="1"
+                    android:text="propio"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:editable="false">
+                    android:layout_height="match_parent">
                 </TextView>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/lyFavorite"
-                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -136,22 +155,21 @@
                     android:layout_weight="1"
                     android:text="@string/favorito">
                 </TextView>
-                <ImageView
-                    android:id="@+id/favorito"
-                    android:layout_weight="1"
-                    android:src="@drawable/ic_favorite"
-                    android:layout_width="match_parent"
+                <Switch
+                    android:id="@+id/fav"
                     android:layout_height="match_parent"
-                    android:editable="false">
-                </ImageView>
+                    android:layout_width="match_parent"
+                    android:layout_weight="1">
+                </Switch>
             </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -162,26 +180,34 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="@string/ubicacion"></TextView>
-
+                    android:text="@string/ubicacion">
+                </TextView>
                 <TextView
                     android:id="@+id/ubicacion"
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:editable="false"
-                    android:lines="1"></TextView>
-
+                    android:editable="false">
+                </TextView>
             </LinearLayout>
-            <Button
-                android:id="@+id/mapV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="onClickViewMap"
-                android:layout_gravity="center"
-                android:text="Ver GPS">
-            </Button>
-        </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center"
+                    android:gravity="center">
+
+                    <Button
+                        android:id="@+id/btnGps"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/btnCapGPS">
+
+                    </Button>
+
+                </LinearLayout>
+            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -196,13 +222,12 @@
                     android:layout_weight="1"
                     android:text="@string/nombrecoleccion">
                 </TextView>
-                <TextView
+                <EditText
                     android:id="@+id/coleccion"
                     android:layout_weight="1"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:editable="false">
-                </TextView>
+                    android:layout_height="match_parent">
+                </EditText>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -218,13 +243,13 @@
                     android:layout_weight="1"
                     android:text="@string/tipoCombustion">
                 </TextView>
-                <TextView
+                <Spinner
                     android:id="@+id/combustion"
                     android:layout_weight="1"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:editable="false">
-                </TextView>
+                    android:entries="@array/tipos_combustion"
+                    android:layout_height="match_parent">
+                </Spinner>
             </LinearLayout>
 
             <LinearLayout
@@ -241,7 +266,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
-                    android:visibility="gone"
+                    android:onClick="onClickBuy"
                     android:text="@string/btnComprar">
 
                 </Button>
@@ -250,6 +275,7 @@
                     android:layout_width="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_height="wrap_content"
+                    android:onClick="onClickCancelar"
                     android:text="@string/btnCancelar">
 
                 </Button>

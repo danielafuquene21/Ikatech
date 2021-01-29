@@ -26,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         db = new DataBase(LoginActivity.this);
         user = new User();
+        db.deleteCurrentUser();
         loadView();
     }
 
@@ -35,6 +36,8 @@ public class LoginActivity extends AppCompatActivity {
         edPass = (EditText) findViewById(R.id.edPass);
 
         btnLogin = (Button) findViewById(R.id.btnLogin);
+
+
     }
 
      public void onClicklogin (View view){
@@ -47,7 +50,8 @@ public class LoginActivity extends AppCompatActivity {
         }else{
            user.setUsername((Integer.parseInt(userName)));
            user.setPassword(pass);
-           if((db.existentUserLogin(user)) == false) db.login(user);
+           //if((db.existentUserLogin(user)) == false)
+            db.login(user);
            Intent intent = new Intent(LoginActivity.this, AvailableVehiclesActivity.class);
            intent.putExtra("userLogin", user);
            startActivity(intent);

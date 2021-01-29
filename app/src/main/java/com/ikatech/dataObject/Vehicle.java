@@ -9,9 +9,22 @@ public class Vehicle implements Serializable {
     private String estado;
     private String imagen;
     private boolean favorito;
-    private String ubicacion;
+    private Location ubicacion;
     private String nombreColeccion;
     private String tipoCombustion;
+    private String tipo;
+
+    public boolean isFavorito() {
+        return favorito;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
 
     public String getMarca() {
         return marca;
@@ -45,11 +58,11 @@ public class Vehicle implements Serializable {
         this.favorito = favorito;
     }
 
-    public String getUbicacion() {
+    public Location getUbicacion() {
         return ubicacion;
     }
 
-    public void setUbicacion(String ubicacion) {
+    public void setUbicacion(Location ubicacion) {
         this.ubicacion = ubicacion;
     }
 

@@ -87,6 +87,7 @@ public class AvailableVehiclesActivity extends AppCompatActivity
                 break;
             case R.id.nav_my_vehicles:
                 title = R.string.menuMyVehicles;
+                fragment = MyVehiclesActivity.newInstance("");
                 break;
             case R.id.nav_availible_vehicles:
                 title = R.string.menuAvailableVehicles;

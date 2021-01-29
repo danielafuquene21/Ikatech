@@ -14,7 +14,10 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.ikatech.businessObject.Const;
 import com.ikatech.dataObject.Location;
+import com.ikatech.dataObject.User;
+import com.ikatech.dataObject.Vehicle;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback , GoogleMap.OnMarkerDragListener {
 
@@ -23,6 +26,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     Address address;
     LatLng latLng;
 
+    Location locationSel = new Location();
+    Vehicle vehicle;
+    Bundle bundle ;
+    boolean flag = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,8 +38,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        getExtras();
+
     }
 
+    private void getExtras() {
+        bundle= getIntent().getExtras();
+        if (bundle != null) {
+
+            vehicle = new Vehicle();
+            vehicle = (Vehicle) bundle.getSerializable("coor");
+        }
+    }
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -50,10 +67,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         /*LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).draggable(true).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));*/
+        LatLng location ;
+        if(bundle!=null){
+            location = new LatLng(Double.parseDouble(vehicle.getUbicacion().getLat()),Double.parseDouble(vehicle.getUbicacion().getLon()));
+            markerG = googleMap.addMarker(new MarkerOptions().position(location).title("Marker in Sydney"));
 
-        LatLng location = new LatLng(4.6056728,-74.0555255);
-        markerG = googleMap.addMarker(new MarkerOptions().position(location).draggable(true).title("Marker in Sydney"));
-
+        }else{
+            location = new LatLng(4.6056728,-74.0555255);
+            markerG = googleMap.addMarker(new MarkerOptions().position(location).draggable(true).title("Marker in Sydney"));
+            flag = true;
+        }
 
         if (markerG == null) {
             markerG = googleMap.addMarker(new MarkerOptions().position(location).title("location").draggable(true));
@@ -80,16 +103,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onMarkerDragEnd(Marker marker) {
-        if(marker.equals(markerG)){
-            Location locat = new Location();
-            locat.setLat(Double.toString(marker.getPosition().latitude));
-            locat.setLon(Double.toString(marker.getPosition().longitude));
-            locat.setAddres("");
-            Toast.makeText(this, locat.getLat() + " , " + locat.getLon(), Toast.LENGTH_LONG).show();
-            Intent returnIntent = new Intent();
-            returnIntent.putExtra("lat",locat);
-            setResult(1,returnIntent);
-            finish();
+        if (flag) {
+            if (marker.equals(markerG)) {
+                Location locat = new Location();
+                locat.setLat(Double.toString(marker.getPosition().latitude));
+                locat.setLon(Double.toString(marker.getPosition().longitude));
+                locat.setAddres("");
+                Toast.makeText(this, locat.getLat() + " , " + locat.getLon(), Toast.LENGTH_LONG).show();
+                Intent returnIntent = new Intent();
+                returnIntent.putExtra("lat", locat);
+                setResult(1, returnIntent);
+                finish();
+            }
         }
     }
 }

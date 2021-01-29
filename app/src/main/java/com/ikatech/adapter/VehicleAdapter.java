@@ -9,10 +9,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.ikatech.R;
 import com.ikatech.businessObject.Const;
 import com.ikatech.dataObject.Vehicle;
@@ -20,42 +20,56 @@ import com.ikatech.view.AddVehicleActivity;
 
 import java.util.ArrayList;
 
-public class NewVehicleAviableAdapter extends RecyclerView.Adapter<NewVehicleAviableAdapter.VehicleViewHolder> {
+public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.VehicleViewHolder> {
 
     //private View.OnClickListener listener;
     private RecyclerViewOnItemClickListener recListener;
     private ArrayList<Vehicle> data;
     private Context contexto;
-    public NewVehicleAviableAdapter(ArrayList<Vehicle> data, Context applicationContext) {
+    private  String tipo;
+    public VehicleAdapter(ArrayList<Vehicle> data, Context applicationContext, String tipoAdapter) {
         this.data = data;
         this.contexto = applicationContext;
+        this.tipo = tipoAdapter;
     }
 
     @Override
-    public NewVehicleAviableAdapter.VehicleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public VehicleAdapter.VehicleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         int Layout = R.layout.vehicle_list_item;
         //View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.vehicle_list_item, parent, false);
-        return new NewVehicleAviableAdapter.VehicleViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.vehicle_list_item, parent, false));
+        return new VehicleAdapter.VehicleViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.vehicle_list_item, parent, false));
         //return new NewVehicleAviableAdapter.VehicleViewHolder(view);
 
     }
 
     @Override
-    public void onBindViewHolder(NewVehicleAviableAdapter.VehicleViewHolder holder, final int position) {
+    public void onBindViewHolder(VehicleAdapter.VehicleViewHolder holder, final int position) {
         final Vehicle vehi = data.get(position);
         holder.tvTradeMark.setText(vehi.getMarca());
-        holder.tvStatus.setText(vehi.getEstado());
+
         if(vehi.getFavorito() == true){
             holder.favorite.setVisibility(View.VISIBLE);
         }
+        Glide.with(contexto)
+                .load(vehi.getImagen().toLowerCase())
+                .into(holder.image);
 
-
+        if(tipo.equals("")){
+            //holder.btn_view_post.setVisibility(View.GONE);
+            holder.tvStatus.setText("comprado");
+        }else{
+            holder.tvStatus.setText(vehi.getEstado().toLowerCase());
+        }
         holder.btn_view_post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(contexto, "click boton:   " + vehi.getMarca() , Toast.LENGTH_SHORT).show();
                 Intent  intent = new Intent(contexto, AddVehicleActivity.class);
-                intent.putExtra(Const.VEHI, vehi);
+                if(tipo.equals("")){
+                    intent.putExtra(Const.VEHI, vehi);
+                    intent.putExtra(Const.BOUGHT_VEHI, true);
+                }else {
+                    intent.putExtra(Const.VEHI, vehi);
+                }
                 //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 contexto.startActivity(intent);
 

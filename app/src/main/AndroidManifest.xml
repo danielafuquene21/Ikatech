@@ -58,6 +58,18 @@
             tools:ignore="Instantiatable">
             >
         </activity>
+        <activity
+            android:name=".view.MyVehiclesActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="Instantiatable">
+            >
+        </activity>
+        <activity
+            android:name=".view.FormBuyVehicleActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="Instantiatable">
+            >
+        </activity>
     </application>
 
 </manifest>

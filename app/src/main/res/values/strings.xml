@@ -28,7 +28,6 @@
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
     <string name="menu_group">Group</string>
-    <string name="copyright">© Daniel Medina - danielme.com</string>
     <string name="title_activity_maps">Map</string>
 
     -- Attri vehicle
@@ -40,4 +39,13 @@
     <string name="ubicacion">Ubicacion</string>
     <string name="nombrecoleccion">Nombre Coleccion</string>
     <string name="tipoCombustion">Tipo Combustion</string>
+
+    <string-array name="tipos_combustion">
+        <item>Hidrogeno</item>
+        <item>Electrico</item>
+        <item>Electrico Hibrido</item>
+        <item>combustible flexible</item>
+        <item>Gas Natural Vehicular</item>
+        <item>Gas Licuado del Petroleo</item>
+    </string-array>
 </resources>

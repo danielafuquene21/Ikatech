@@ -1,15 +1,11 @@
 package com.ikatech.view;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -18,9 +14,10 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ikatech.R;
-import com.ikatech.adapter.NewVehicleAviableAdapter;
+import com.ikatech.adapter.VehicleAdapter;
 import com.ikatech.businessObject.Const;
 import com.ikatech.businessObject.Endpoints;
+import com.ikatech.dataObject.Location;
 import com.ikatech.dataObject.User;
 import com.ikatech.dataObject.Vehicle;
 
@@ -37,7 +34,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class AvailableVehiclesFragment extends Fragment  implements NewVehicleAviableAdapter.RecyclerViewOnItemClickListener {
+public class AvailableVehiclesFragment extends Fragment  implements VehicleAdapter.RecyclerViewOnItemClickListener {
 
     private static final String TEXT = "text";
 
@@ -51,7 +48,7 @@ public class AvailableVehiclesFragment extends Fragment  implements NewVehicleAv
     ArrayList<String> a = new ArrayList<String>();
     boolean load = false;
     public String json = "";
-    NewVehicleAviableAdapter adapter;
+    VehicleAdapter adapter;
     ProgressDialog progressDialog;
 
     public static AvailableVehiclesFragment newInstance(String text) {
@@ -151,6 +148,16 @@ public class AvailableVehiclesFragment extends Fragment  implements NewVehicleAv
                 vehicle.setImagen(item.getString(Const.IMAGE));
                 vehicle.setNombreColeccion(item.getString(Const.COLLECTION_NAME));
                 vehicle.setTipoCombustion(item.getString(Const.COMBUSTION_TYPE));
+                JSONObject ubicacion = new JSONObject(String.valueOf(item.getString(Const.LOCATION)));
+                //JSONArray jsonArray = (JSONArray) ubicacion.get(Const.LOCATION);
+                //for (int j = 0 ;j < jsonArray.length(); j++){
+                    Location location = new Location();
+                    //JSONObject loc = (JSONObject) jsonArray.get(j);
+                    location.setLon(ubicacion.getString(Const.L_LONGITUDE));
+                    location.setLat(ubicacion.getString(Const.L_LATITUDE));
+                    location.setAddres(ubicacion.getString(Const.L_ADDRESS));
+                    vehicle.setUbicacion(location);
+                //}
                 listVehicle.add(vehicle);
             }
             load = true;
@@ -162,7 +169,7 @@ public class AvailableVehiclesFragment extends Fragment  implements NewVehicleAv
 
 
     private void llenarListView(final ArrayList<Vehicle> listaResponse) {
-        adapter = new NewVehicleAviableAdapter(listaResponse, getContext());
+        adapter = new VehicleAdapter(listaResponse, getContext(), "VeiculosDisponibles");
         adapter.setListener(this);
         recyclerViewSearchResults.setAdapter(adapter);
     }

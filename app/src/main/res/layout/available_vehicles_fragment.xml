@@ -15,7 +15,26 @@
         android:layout_marginBottom="@dimen/activity_vertical_margin"
         tools:ignore="UselessParent">
 
+        <RelativeLayout
+            android:id="@+id/lyManual"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:gravity="right"
+            android:visibility="gone"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/btnmanualAdd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:text="@string/btnComprar"
+                android:gravity="right">
+
+            </Button>
+        </RelativeLayout>
+
         <androidx.recyclerview.widget.RecyclerView
+            android:layout_below="@+id/lyManual"
             android:id="@+id/recyclerViewSearchResults"
             android:clickable="true"
             android:layout_marginTop="@dimen/activity_vertical_margin"

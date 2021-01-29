@@ -9,6 +9,7 @@ public class Const {
     public static final String VEHICLE_TABLE = "Vehiculo";
     public static final String USER_SESSION_TABLE = "UsuarioSesion";
 
+
     /**
      * Atributos para la tabla Usuario
      */
@@ -18,18 +19,6 @@ public class Const {
     public static final String DIRECCION = "Direccion";
     private static final String IMAGEN = "Imagen";
 
-
-    /**
-     * Atributos para la tabla Vehiculos
-     */
-    private static final String USER_CEDULA = "UserCc";
-    private static final String MARCA = "Marca";
-    private static final String MODELO = "Modelo";
-    private static final String ESTATDO = "Estado";
-    private static final String IMAGEN_VEHI = "ImagenVehi";
-    private static final String FAVORITO = "Favorito";
-    private static final String TIPO_COMBUSTION = "TipoCombustion";
-    private static final String UBICACION = "Ubicacion";
 
     /**
      * Atributos para la tabla Usuario que se encuentra con la sesion iniciada
@@ -42,17 +31,17 @@ public class Const {
      * Creacion de query para iniciar sesion
      */
     public static final String query_login = "CREATE TABLE IF NOT EXISTS "
-            + USER_SESSION_TABLE + " (" + USERNAME + " INT PRIMARY KEY, "
-            +LOGIN_CONSTRASENA + " TEXT )";
+            + USER_SESSION_TABLE + " (" + USERNAME + " INT , "
+            +LOGIN_CONSTRASENA + " TEXT  , indice  INTEGER PRIMARY KEY AUTOINCREMENT )";
 
     /**
      * Creacion de query para crear la tabla de Usuarios
      */
     public static final String query_created_user = "CREATE TABLE IF NOT EXISTS "
-            + USER_TABLE + " (" + CEDULA + " INT PRIMARY KEY, "
+            + USER_TABLE + " (" + CEDULA + " INT , "
             +NOMBRE + " TEXT , "
             + USER_CONTRASENA +" TEXT ,"
-            +DIRECCION + " TEXT )";
+            +DIRECCION + " TEXT  , indice  INTEGER PRIMARY KEY AUTOINCREMENT )";
 
     /**
      * Atributos para obtener el objeto vehiculo desde el json
@@ -65,10 +54,42 @@ public class Const {
     public static final String IMAGE = "image";
     public static final String COLLECTION_NAME = "collection_name";
     public static final String COMBUSTION_TYPE = "combustion_type";
+    public static final String TYPE = "type";
+    public static final String ADDRESS = "address";
+    public static final String LAT = "lat";
+    public static final String LON = "lon";
+
+    public static final String LOCATION = "location";
+    public static final String L_ADDRESS = "address";
+    public static final String L_LATITUDE = "latitude";
+    public static final String L_LONGITUDE = "longitude";
 
     /**
      * intents referencias
      */
     public static final String VEHI = "vehicle";
+    public static final String BOUGHT_VEHI = "bou_vehicle";
+    public static final String US = "user";
+
+    /**
+     * Creacion de query para crear la tabla de Vehiculos que se usara
+     * para guardar los vehiculos que se compren o adquieran
+     */
+    public static final String query_created_vehicle = "CREATE TABLE IF NOT EXISTS "
+            + VEHICLE_TABLE + " (" + CEDULA + " INT , "
+            + USER_CONTRASENA + " TEXT , "
+            + BRAND +" TEXT ,"
+            + MODEL +" TEXT ,"
+            + STATE +" TEXT ,"
+            + FAVORITE +" TEXT ,"
+            + IMAGE +" TEXT ,"
+            + COLLECTION_NAME +" TEXT ,"
+            + COMBUSTION_TYPE + " TEXT ,"
+            + ADDRESS +" TEXT ,"
+            + LAT +" TEXT ,"
+            + LON +" TEXT ,"
+        +TYPE +" TEXT, indice  INTEGER PRIMARY KEY AUTOINCREMENT )";
+
+
 }
 
