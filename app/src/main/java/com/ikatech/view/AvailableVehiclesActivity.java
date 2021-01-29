@@ -15,17 +15,20 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.navigation.NavigationView;
 import com.ikatech.R;
+import com.ikatech.dataObject.User;
 
 public class AvailableVehiclesActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         DrawerLayout.DrawerListener {
 
     private DrawerLayout drawerLayout;
+    private  User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.available_vehicle_activity);
+        getExtras();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
@@ -55,6 +58,13 @@ public class AvailableVehiclesActivity extends AppCompatActivity
             }
         });
     }
+    private void getExtras() {
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            user = new User();
+            user = (User) bundle.getSerializable("userLogin");
+        }
+    }
 
     @Override
     public void onBackPressed() {
@@ -68,21 +78,24 @@ public class AvailableVehiclesActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int title;
+        Fragment fragment = null;
         switch (menuItem.getItemId()) {
             case R.id.nav_profile:
                 title = R.string.menuProfile;
+                fragment = ProfileActivity.newInstance(user);
+
                 break;
             case R.id.nav_my_vehicles:
                 title = R.string.menuMyVehicles;
                 break;
             case R.id.nav_availible_vehicles:
                 title = R.string.menuAvailableVehicles;
+                fragment = AvailableVehiclesFragment.newInstance(getString(title));
+
                 break;
             default:
                 throw new IllegalArgumentException("menu option not implemented!!");
         }
-
-        Fragment fragment = AvailableVehiclesFragment.newInstance(getString(title));
         getSupportFragmentManager()
                 .beginTransaction()
                 .setCustomAnimations(R.anim.nav_enter, R.anim.nav_exit)
@@ -92,7 +105,6 @@ public class AvailableVehiclesActivity extends AppCompatActivity
         setTitle(getString(title));
 
         drawerLayout.closeDrawer(GravityCompat.START);
-
         return true;
     }
 
@@ -117,5 +129,6 @@ public class AvailableVehiclesActivity extends AppCompatActivity
     public void onDrawerStateChanged(int i) {
         //cambio de estado, puede ser STATE_IDLE, STATE_DRAGGING or STATE_SETTLING
     }
+
 
 }

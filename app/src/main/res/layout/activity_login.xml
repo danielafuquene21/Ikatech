@@ -37,6 +37,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="10dp"
+                    android:inputType="number"
                     android:hint="@string/edUser"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp">
@@ -68,6 +69,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginTop="10dp"
                     android:hint="@string/edPass"
+                    android:inputType="textPassword"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp">
 

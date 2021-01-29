@@ -11,6 +11,15 @@
     <string name="menuMyVehicles">Mis Vehiculos</string>
     <string name="menuAvailableVehicles">Vehiculos Disponibles</string>
 
+    -- Attri profile
+    <string name="tvNombre">Nombre</string>
+    <string name="tvCc">Cc</string>
+    <string name="tvDireccion">Direccion de Residencia</string>
+    <string name="btnGuardar">Guardar</string>
+    <string name="btnCancelar">Cancelar</string>
+    <string name="btnComprar">Comprar</string>
+    <string name="btnCapGPS">Capturar Ubicacion</string>
+
 
     <string name="title_click">Title click</string>
     <string name="menu_camera">Camera</string>
@@ -20,4 +29,15 @@
     <string name="menu_send">Send</string>
     <string name="menu_group">Group</string>
     <string name="copyright">© Daniel Medina - danielme.com</string>
+    <string name="title_activity_maps">Map</string>
+
+    -- Attri vehicle
+    <string name="marca">Marca</string>
+    <string name="modelo">Modelo</string>
+    <string name="eliminacion">Solicitud Eliminacion</string>
+    <string name="estado">Estado</string>
+    <string name="favorito">Favorito</string>
+    <string name="ubicacion">Ubicacion</string>
+    <string name="nombrecoleccion">Nombre Coleccion</string>
+    <string name="tipoCombustion">Tipo Combustion</string>
 </resources>
