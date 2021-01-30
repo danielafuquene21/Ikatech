@@ -166,6 +166,7 @@ public class DataBase extends SQLiteOpenHelper {
                         Const.ADDRESS+" , "+
                         Const.LAT+" , "+
                         Const.LON+" , "+
+                        Const.DELET_REQUEST+" , "+
                         Const.TYPE+" ) VALUES ('"+user.getUsername()+"' , '"+user.getPassword()+"', '" +
                         vehicle.getMarca()+"' , '" +
                         vehicle.getModelo()+"' , '" +
@@ -177,6 +178,7 @@ public class DataBase extends SQLiteOpenHelper {
                         vehicle.getUbicacion().getAddres()+"' , '"+
                         vehicle.getUbicacion().getLat()+"' , '"+
                         vehicle.getUbicacion().getLon()+"' , '"+
+                        vehicle.getEliminar()+"' , '" +
                         vehicle.getTipo()+"')";
 
                 db.execSQL(query);

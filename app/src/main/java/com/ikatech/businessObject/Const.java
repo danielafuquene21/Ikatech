@@ -88,6 +88,7 @@ public class Const {
             + ADDRESS +" TEXT ,"
             + LAT +" TEXT ,"
             + LON +" TEXT ,"
+            + DELET_REQUEST +" TEXT ,"
         +TYPE +" TEXT, indice  INTEGER PRIMARY KEY AUTOINCREMENT )";
 
 

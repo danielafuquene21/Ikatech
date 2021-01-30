@@ -30,7 +30,7 @@ public class FormBuyVehicleActivity extends AppCompatActivity {
     TextView ubicacion, estado;
     Spinner combustion;
     ImageView imageV;
-    Switch fav;
+    Switch fav , del;
     private Button btnComprar, btnCancelar, btnCapGps;
     DataBase db;
     public User user;
@@ -60,7 +60,7 @@ public class FormBuyVehicleActivity extends AppCompatActivity {
 
         marca = (EditText) findViewById(R.id.marca);
         modelo = (EditText) findViewById(R.id.modelo);
-        eliminacion = (EditText) findViewById(R.id.eliminacion);
+        del = (Switch) findViewById(R.id.del);
         estado = (TextView) findViewById(R.id.estado);
         ubicacion = (TextView) findViewById(R.id.ubicacion);
         coleccion = (EditText) findViewById(R.id.coleccion);
@@ -105,8 +105,7 @@ public class FormBuyVehicleActivity extends AppCompatActivity {
         finish();
     }
     public void onClickBuy (View view){
-        if((String.valueOf(marca.getText()).equals("")) || (String.valueOf(modelo.getText()).equals("")) ||
-                (String.valueOf(eliminacion.getText()).equals("")) || (String.valueOf(estado.getText()).equals("")) ||
+        if((String.valueOf(marca.getText()).equals("")) || (String.valueOf(modelo.getText()).equals("")) || (String.valueOf(estado.getText()).equals("")) ||
                 (String.valueOf(ubicacion.getText()).equals("")) || (String.valueOf(coleccion.getText()).equals("")) ||
                  (String.valueOf(imagenUrl.getText()).equals(""))){
             Toast.makeText(this, "Debe diligenciar correctamente el formulario", Toast.LENGTH_SHORT).show();
@@ -122,7 +121,7 @@ public class FormBuyVehicleActivity extends AppCompatActivity {
                 //vehicle.setUbicacion(String.valueOf(ubicacion.getText()));
                 vehicle.setNombreColeccion(String.valueOf(coleccion.getText()));
                 vehicle.setTipoCombustion(String.valueOf(combustion.getSelectedItem()));
-
+                vehicle.setEliminar(del.isChecked());
                 location.setAddres("");
                 vehicle.setUbicacion(location);
                 vehicle.setTipo("manual");

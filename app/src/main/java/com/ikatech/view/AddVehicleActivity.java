@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,7 +25,8 @@ import com.ikatech.dataObject.Vehicle;
 
 public class AddVehicleActivity extends AppCompatActivity {
 
-    private TextView marca,modelo,eliminacion,estado ,ubicacion, coleccion, combustion;
+    private TextView marca,modelo,estado ,ubicacion, coleccion, combustion;
+    private Switch eliminacion;
     private Button btnComprar, btnCancelar, mapV;
 
     private LinearLayout lyFavorite;
@@ -59,7 +61,7 @@ public class AddVehicleActivity extends AppCompatActivity {
 
         marca = (TextView) findViewById(R.id.marca);
         modelo = (TextView) findViewById(R.id.modelo);
-        eliminacion = (TextView) findViewById(R.id.eliminacion);
+        eliminacion = (Switch) findViewById(R.id.eliminacion);
         estado = (TextView) findViewById(R.id.estado);
         ubicacion = (TextView) findViewById(R.id.ubicacion);
         coleccion = (TextView) findViewById(R.id.coleccion);
@@ -70,7 +72,7 @@ public class AddVehicleActivity extends AppCompatActivity {
 
         marca.setText(String.valueOf(vehicle.getMarca())+"");
         modelo.setText(String.valueOf(vehicle.getModelo())+"");
-        eliminacion.setText("");
+        //if(vehicle.getEliminar() == false) eliminacion.isEnabled();
         estado.setText(String.valueOf(vehicle.getEstado()).toLowerCase()+"");
         ubicacion.setText(vehicle.getUbicacion().getAddres());
         coleccion.setText(String.valueOf(vehicle.getNombreColeccion().toLowerCase())+"");

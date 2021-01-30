@@ -67,6 +67,7 @@
         <activity
             android:name=".view.FormBuyVehicleActivity"
             android:theme="@style/AppTheme.NoActionBar"
+            android:alwaysRetainTaskState="true"
             tools:ignore="Instantiatable">
             >
         </activity>

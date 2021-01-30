@@ -13,6 +13,18 @@ public class Vehicle implements Serializable {
     private String nombreColeccion;
     private String tipoCombustion;
     private String tipo;
+    private boolean eliminar;
+
+    public boolean isEliminar() {
+        return eliminar;
+    }
+
+    public void setEliminar(boolean eliminar) {
+        this.eliminar = eliminar;
+    }
+    public boolean getEliminar() {
+        return eliminar;
+    }
 
     public boolean isFavorito() {
         return favorito;
